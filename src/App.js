@@ -19,11 +19,13 @@ function App() {
         yourRating={yourRating}
         friendRating={friendRating}
       />
-      <Reset
-        setBill={setBill}
-        setYourRating={setYourRating}
-        setFriendRating={setFriendRating}
-      />
+      {bill > 0 && yourRating !== "" && friendRating !== "" && (
+        <Reset
+          setBill={setBill}
+          setYourRating={setYourRating}
+          setFriendRating={setFriendRating}
+        />
+      )}
     </div>
   );
 }
