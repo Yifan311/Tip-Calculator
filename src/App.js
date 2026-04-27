@@ -19,12 +19,20 @@ function App() {
         yourRating={yourRating}
         friendRating={friendRating}
       />
-      {bill > 0 && yourRating !== "" && friendRating !== "" && (
+      {bill > 0 ? (
         <Reset
           setBill={setBill}
           setYourRating={setYourRating}
           setFriendRating={setFriendRating}
         />
+      ) : yourRating !== "" || friendRating !== "" ? (
+        <Reset
+          setBill={setBill}
+          setYourRating={setYourRating}
+          setFriendRating={setFriendRating}
+        />
+      ) : (
+        ""
       )}
     </div>
   );
