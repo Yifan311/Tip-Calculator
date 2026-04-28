@@ -42,7 +42,7 @@ function Bill({ bill, setBill }) {
     <div>
       <span>How much was the bill?</span>
       <input
-        type="text"
+        type="number"
         placeholder="Bill amount"
         value={bill}
         onChange={(e) => setBill(e.target.value)}
