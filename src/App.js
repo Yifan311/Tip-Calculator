@@ -9,11 +9,12 @@ function App() {
   return (
     <div className="App">
       <Bill bill={bill} setBill={setBill} />
-      <YourRating yourRating={yourRating} setYourRating={setYourRating} />
-      <FriendRating
-        friendRating={friendRating}
-        setFriendRating={setFriendRating}
-      />
+      <Rating Rating={yourRating} setRating={setYourRating}>
+        How did you like the service?
+      </Rating>
+      <Rating Rating={friendRating} setRating={setFriendRating}>
+        How did your friend like the service?
+      </Rating>
       <CalculateTip
         bill={bill}
         yourRating={yourRating}
@@ -25,7 +26,7 @@ function App() {
           setYourRating={setYourRating}
           setFriendRating={setFriendRating}
         />
-      ) : yourRating !== "" || friendRating !== "" ? (
+      ) : yourRating !== 0 || friendRating !== 0 ? (
         <Reset
           setBill={setBill}
           setYourRating={setYourRating}
@@ -50,31 +51,11 @@ function Bill({ bill, setBill }) {
     </div>
   );
 }
-function YourRating({ yourRating, setYourRating }) {
+function Rating({ Rating, setRating, children }) {
   return (
     <div>
-      <span>How did you like the service?</span>
-      <select
-        value={yourRating}
-        onChange={(e) => setYourRating(e.target.value)}
-      >
-        <option value={0}>Dissatisfied(0%)</option>
-        <option value={5}>It was okay(5%)</option>
-        <option value={10}>It was good(10%)</option>
-        <option value={20}>Absolutely amazing!(20%)</option>
-      </select>
-    </div>
-  );
-}
-
-function FriendRating({ friendRating, setFriendRating }) {
-  return (
-    <div>
-      <span>How did your friend like the service?</span>
-      <select
-        value={friendRating}
-        onChange={(e) => setFriendRating(e.target.value)}
-      >
+      <span>{children}</span>
+      <select value={Rating} onChange={(e) => setRating(e.target.value)}>
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
         <option value={10}>It was good(10%)</option>
@@ -86,9 +67,7 @@ function FriendRating({ friendRating, setFriendRating }) {
 
 function CalculateTip({ bill, yourRating, friendRating }) {
   // Implementation for calculating tip
-  // const tip =
-  //   (bill * (parseFloat(yourRating) + parseFloat(friendRating))) / 2 / 100 || 0;
-  // const total = parseFloat(bill) + tip;
+
   const tipPercentage =
     (parseFloat(yourRating) + parseFloat(friendRating)) / 2 / 100;
   const tip = bill * tipPercentage || 0;
@@ -107,8 +86,8 @@ function CalculateTip({ bill, yourRating, friendRating }) {
 function Reset({ setBill, setYourRating, setFriendRating }) {
   function handleReset() {
     setBill(0);
-    setYourRating("");
-    setFriendRating("");
+    setYourRating(0);
+    setFriendRating(0);
   }
   return (
     <div>
