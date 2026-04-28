@@ -4,8 +4,8 @@ import { useState } from "react";
 
 function App() {
   const [bill, setBill] = useState(null);
-  const [yourRating, setYourRating] = useState("");
-  const [friendRating, setFriendRating] = useState("");
+  const [yourRating, setYourRating] = useState(0);
+  const [friendRating, setFriendRating] = useState(0);
   return (
     <div className="App">
       <Bill bill={bill} setBill={setBill} />
@@ -86,8 +86,12 @@ function FriendRating({ friendRating, setFriendRating }) {
 
 function CalculateTip({ bill, yourRating, friendRating }) {
   // Implementation for calculating tip
-  const tip =
-    (bill * (parseFloat(yourRating) + parseFloat(friendRating))) / 2 / 100 || 0;
+  // const tip =
+  //   (bill * (parseFloat(yourRating) + parseFloat(friendRating))) / 2 / 100 || 0;
+  // const total = parseFloat(bill) + tip;
+  const tipPercentage =
+    (parseFloat(yourRating) + parseFloat(friendRating)) / 2 / 100;
+  const tip = bill * tipPercentage || 0;
   const total = parseFloat(bill) + tip;
   return (
     <div>
