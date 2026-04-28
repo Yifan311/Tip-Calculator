@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Bill bill={bill} setBill={setBill} />
-      <Rating rating={yourRating} setRating={setYourRating}>
+      <Rating Rating={yourRating} setRating={setYourRating}>
         How did you like the service?
       </Rating>
-      <Rating rating={friendRating} setRating={setFriendRating}>
+      <Rating Rating={friendRating} setRating={setFriendRating}>
         How did your friend like the service?
       </Rating>
       <CalculateTip
@@ -43,31 +43,11 @@ function Bill({ bill, setBill }) {
     </div>
   );
 }
-function YourRating({ yourRating, setYourRating }) {
+function Rating({ Rating, setRating, children }) {
   return (
     <div>
-      <span>How did you like the service?</span>
-      <select
-        value={yourRating}
-        onChange={(e) => setYourRating(Number(e.target.value))}
-      >
-        <option value={0}>Dissatisfied(0%)</option>
-        <option value={5}>It was okay(5%)</option>
-        <option value={10}>It was good(10%)</option>
-        <option value={20}>Absolutely amazing!(20%)</option>
-      </select>
-    </div>
-  );
-}
-
-function FriendRating({ friendRating, setFriendRating }) {
-  return (
-    <div>
-      <span>How did your friend like the service?</span>
-      <select
-        value={friendRating}
-        onChange={(e) => setFriendRating(Number(e.target.value))}
-      >
+      <span>{children}</span>
+      <select value={Rating} onChange={(e) => setRating(e.target.value)}>
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
         <option value={10}>It was good(10%)</option>
