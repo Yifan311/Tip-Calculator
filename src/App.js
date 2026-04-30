@@ -98,8 +98,8 @@ function CalculateTip({ bill, yourRating, friendRating }) {
 function Reset({ setBill, setYourRating, setFriendRating }) {
   function handleReset() {
     setBill("");
-    setYourRating("");
-    setFriendRating("");
+    setYourRating(0);
+    setFriendRating(0);
   }
   return (
     <div>
