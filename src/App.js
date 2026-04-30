@@ -36,9 +36,15 @@ function Bill({ bill, setBill }) {
       <label>How much was the bill?</label>
       <input
         type="number"
+        min="0"
         placeholder="Bill amount"
         value={bill}
-        onChange={(e) => setBill(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          if (value === "" || Number(value) >= 0) {
+            setBill(value);
+          }
+        }}
       />
     </div>
   );
@@ -46,13 +52,18 @@ function Bill({ bill, setBill }) {
 function Rating({ rating, setRating, children }) {
   return (
     <div>
-      <span>{children}</span>
-      <select value={rating} onChange={(e) => setRating(e.target.value)}>
-        <option value={0}>Dissatisfied(0%)</option>
-        <option value={5}>It was okay(5%)</option>
-        <option value={10}>It was good(10%)</option>
-        <option value={20}>Absolutely amazing!(20%)</option>
-      </select>
+      <label>
+        {children}
+        <select
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+        >
+          <option value={0}>Dissatisfied(0%)</option>
+          <option value={5}>It was okay(5%)</option>
+          <option value={10}>It was good(10%)</option>
+          <option value={20}>Absolutely amazing!(20%)</option>
+        </select>
+      </label>
     </div>
   );
 }
