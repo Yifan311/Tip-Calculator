@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Bill bill={bill} setBill={setBill} />
-      <Rating Rating={yourRating} setRating={setYourRating}>
+      <Rating rating={yourRating} setRating={setYourRating}>
         How did you like the service?
       </Rating>
-      <Rating Rating={friendRating} setRating={setFriendRating}>
+      <Rating rating={friendRating} setRating={setFriendRating}>
         How did your friend like the service?
       </Rating>
       <CalculateTip
@@ -43,11 +43,11 @@ function Bill({ bill, setBill }) {
     </div>
   );
 }
-function Rating({ Rating, setRating, children }) {
+function Rating({ rating, setRating, children }) {
   return (
     <div>
       <span>{children}</span>
-      <select value={Rating} onChange={(e) => setRating(e.target.value)}>
+      <select value={rating} onChange={(e) => setRating(e.target.value)}>
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
         <option value={10}>It was good(10%)</option>
