@@ -9,10 +9,10 @@ function App() {
   return (
     <div className="App">
       <Bill bill={bill} setBill={setBill} />
-      <Rating Rating={yourRating} setRating={setYourRating}>
+      <Rating rating={yourRating} setRating={setYourRating}>
         How did you like the service?
       </Rating>
-      <Rating Rating={friendRating} setRating={setFriendRating}>
+      <Rating rating={friendRating} setRating={setFriendRating}>
         How did your friend like the service?
       </Rating>
       <CalculateTip
@@ -41,7 +41,7 @@ function App() {
 function Bill({ bill, setBill }) {
   return (
     <div>
-      <span>How much was the bill?</span>
+      <label>How much was the bill?</label>
       <input
         type="number"
         placeholder="Bill amount"
@@ -51,11 +51,11 @@ function Bill({ bill, setBill }) {
     </div>
   );
 }
-function Rating({ Rating, setRating, children }) {
+function Rating({ rating, setRating, children }) {
   return (
     <div>
-      <span>{children}</span>
-      <select value={Rating} onChange={(e) => setRating(e.target.value)}>
+      <label>{children}</label>
+      <select value={rating} onChange={(e) => setRating(e.target.value)}>
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
         <option value={10}>It was good(10%)</option>
@@ -75,9 +75,9 @@ function CalculateTip({ bill, yourRating, friendRating }) {
   return (
     <div>
       {total > 0 && (
-        <p>
+        <h2>
           You pay ${total.toFixed(2)}(${bill} + ${tip.toFixed(2)} tip)
-        </p>
+        </h2>
       )}
     </div>
   );
