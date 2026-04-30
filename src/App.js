@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 
 function App() {
-  const [bill, setBill] = useState(null);
+  const [bill, setBill] = useState("");
   const [yourRating, setYourRating] = useState(0);
   const [friendRating, setFriendRating] = useState(0);
   return (
@@ -19,21 +19,13 @@ function App() {
         yourRating={yourRating}
         friendRating={friendRating}
       />
-      {bill > 0 ? (
+      {bill !== "" || yourRating !== 0 || friendRating !== 0 ? (
         <Reset
           setBill={setBill}
           setYourRating={setYourRating}
           setFriendRating={setFriendRating}
         />
-      ) : yourRating !== "" || friendRating !== "" ? (
-        <Reset
-          setBill={setBill}
-          setYourRating={setYourRating}
-          setFriendRating={setFriendRating}
-        />
-      ) : (
-        ""
-      )}
+      ) : null}
     </div>
   );
 }
@@ -56,7 +48,7 @@ function YourRating({ yourRating, setYourRating }) {
       <span>How did you like the service?</span>
       <select
         value={yourRating}
-        onChange={(e) => setYourRating(e.target.value)}
+        onChange={(e) => setYourRating(Number(e.target.value))}
       >
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
@@ -73,7 +65,7 @@ function FriendRating({ friendRating, setFriendRating }) {
       <span>How did your friend like the service?</span>
       <select
         value={friendRating}
-        onChange={(e) => setFriendRating(e.target.value)}
+        onChange={(e) => setFriendRating(Number(e.target.value))}
       >
         <option value={0}>Dissatisfied(0%)</option>
         <option value={5}>It was okay(5%)</option>
@@ -106,7 +98,7 @@ function CalculateTip({ bill, yourRating, friendRating }) {
 
 function Reset({ setBill, setYourRating, setFriendRating }) {
   function handleReset() {
-    setBill(0);
+    setBill("");
     setYourRating("");
     setFriendRating("");
   }
