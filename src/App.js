@@ -7,7 +7,7 @@ function App() {
   const [yourRating, setYourRating] = useState(0);
   const [friendRating, setFriendRating] = useState(0);
   const hasInput = bill !== "" || yourRating !== 0 || friendRating !== 0;
-  const hasBill = Number(bill) > 0;
+  const hasBill = bill !== "";
 
   function handleBillChange(e) {
     const value = e.target.value;
